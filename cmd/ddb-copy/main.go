@@ -11,9 +11,9 @@ import (
 
 func main() {
 	//flags from command line
-	fromTable := flag.String("src","","from which table")
-	toTable   := flag.String("dest","","to which table")
-	awsRegion := flag.String("aws-region","","which AWS Region")
+	fromTable := flag.String("src", "", "from which table")
+	toTable := flag.String("dest", "", "to which table")
+	awsRegion := flag.String("aws-region", "", "which AWS Region")
 	flag.Parse()
 
 	sess, err := session.NewSession(
@@ -21,19 +21,19 @@ func main() {
 			Region: awsRegion,
 		},
 	)
-	if err != nill{
+	if err != nill {
 		fmt.Println("Cannot connect to AWS, error was:")
 		panic(err)
 	}
 
 	db := dynamodb.New(sess)
 	err = db.ScanPages(&dynamodb.ScanInput{
-		TableName:	fromTable,
+		TableName:      fromTable,
 		ConsistentRead: aws.Bool(true),
-	}, func(scanOutput * dynamodb.ScanOutput, lastPage bool) bool {
+	}, func(scanOutput *dynamodb.ScanOutput, lastPage bool) bool {
 		for _, item := range scanOutput.Items {
 			input := &dynamodb.PutItemInput{
-				Item:	item,
+				Item:      item,
 				TableName: toTable,
 			}
 
