@@ -11,10 +11,14 @@ import (
 
 func main() {
 	//flags from command line
-	src := flag.String("src", "", "from which table")
-	dest := flag.String("dest", "", "to which table")
+	src := flag.String("src", "", "source table")
+	dest := flag.String("dest", "", "destination table")
 	awsRegion := flag.String("aws-region", "", "which AWS Region")
 	flag.Parse()
+
+	if *src == "" || *dest == "" {
+		fmt.Println("Source and destination table names are required")
+	}
 
 	sess, err := session.NewSession(
 		&aws.Config{
