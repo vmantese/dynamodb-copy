@@ -7,12 +7,17 @@ make sure that aws-cli tools are installed and authenticated
 
 build package and run ddb-copy with the correct flags
 
+```console
+cd dynamodb-copy
+go build
+cd cmd/ddb-copy
+```
 
 
 Example 1:
 
 ```console
-    ddb-copy -src payments-table-1 -dest payments-table-2 -aws-region us-east-1
+ddb-copy -src payments-table-1 -dest payments-table-2 -aws-region us-east-1
 ```
 
 
