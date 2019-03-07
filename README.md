@@ -1,7 +1,7 @@
 # dynamodb-copy
 Copy one dynamodb to another and perform inserts and item edits along the way
 
-##USAGE
+## USAGE
 
 make sure that aws-cli tools are installed and authenticated
 
@@ -21,7 +21,7 @@ ddb-copy -src payments-table-1 -dest payments-table-2 -aws-region us-east-1
 ```
 
 
-##Command Line Options
+### Command Line Options
 
 -src  
 source table
