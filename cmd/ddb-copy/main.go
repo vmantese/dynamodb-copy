@@ -11,8 +11,8 @@ import (
 
 func main() {
 	//flags from command line
-	fromTable := flag.String("src", "", "from which table")
-	toTable := flag.String("dest", "", "to which table")
+	src := flag.String("src", "", "from which table")
+	dest := flag.String("dest", "", "to which table")
 	awsRegion := flag.String("aws-region", "", "which AWS Region")
 	flag.Parse()
 
@@ -28,13 +28,13 @@ func main() {
 
 	db := dynamodb.New(sess)
 	err = db.ScanPages(&dynamodb.ScanInput{
-		TableName:      fromTable,
+		TableName:      src,
 		ConsistentRead: aws.Bool(true),
 	}, func(scanOutput *dynamodb.ScanOutput, lastPage bool) bool {
 		for _, item := range scanOutput.Items {
 			input := &dynamodb.PutItemInput{
 				Item:      item,
-				TableName: toTable,
+				TableName: dest,
 			}
 
 			_, err = db.PutItem(input)
