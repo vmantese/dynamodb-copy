@@ -21,7 +21,7 @@ func main() {
 			Region: awsRegion,
 		},
 	)
-	if err != nill {
+	if err != nil {
 		fmt.Println("Cannot connect to AWS, error was:")
 		panic(err)
 	}
@@ -39,7 +39,7 @@ func main() {
 
 			_, err = db.PutItem(input)
 
-			if err != nill {
+			if err != nil {
 				fmt.Println("Error with inserting item:")
 				fmt.Println(err.Error())
 				os.Exit(1)
@@ -47,7 +47,7 @@ func main() {
 		}
 		return !lastPage
 	})
-	if err != nill {
+	if err != nil {
 		fmt.Println(err)
 	}
 }
