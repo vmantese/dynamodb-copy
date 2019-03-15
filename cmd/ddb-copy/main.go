@@ -78,7 +78,7 @@ func (*DefaultTransformer) Transform(av map[string]*dynamodb.AttributeValue) map
 func makeTransformer(name string) (Transformer, error) {
 	switch name {
 	case "":
-		fallthrough
+		return new(DefaultTransformer{}),nil
 	default:
 		return new(DefaultTransformer{}), errors.New("unable to find selected transformer")
 	}
