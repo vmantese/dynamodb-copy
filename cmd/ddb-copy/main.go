@@ -71,7 +71,7 @@ type Transformer interface {
 
 type DefaultTransformer struct{}
 
-func (DefaultTransformer) Transform(av *dynamodb.AttributeValue) *dynamodb.AttributeValue {
+func (*DefaultTransformer) Transform(av map[string]*dynamodb.AttributeValue) map[string]*dynamodb.AttributeValue {
 	return av
 }
 
